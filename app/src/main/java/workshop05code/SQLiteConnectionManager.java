@@ -137,7 +137,7 @@ public class SQLiteConnectionManager {
                     pstmt.setString(2, word);
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            logger.log(Level.SEVERE, e.getMessage());
         }
 
     }
@@ -149,7 +149,7 @@ public class SQLiteConnectionManager {
      * @return true if guess exists in the database, false otherwise
      */
     public boolean isValidWord(String guess) {
-        String query = "SELECT count(id) as total FROM validWords WHERE word = ?";
+        String query = "SELECT count(id) as total FROM validWords WHERE word like ?";
         try (Connection conn = DriverManager.getConnection(databaseURL);
                 PreparedStatement stmt = conn.prepareStatement(query)) {
                 stmt.setString(1, guess);
