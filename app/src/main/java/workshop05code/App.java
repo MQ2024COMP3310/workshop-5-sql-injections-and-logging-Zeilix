@@ -28,6 +28,7 @@ public class App {
     }
 
     private static final Logger logger = Logger.getLogger(App.class.getName());
+    
     // End code for logging exercise
     
     /**
