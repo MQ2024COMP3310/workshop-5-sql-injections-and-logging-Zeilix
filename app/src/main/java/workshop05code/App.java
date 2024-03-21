@@ -39,14 +39,16 @@ public class App {
         wordleDatabaseConnection.createNewDatabase("words.db");
         if (wordleDatabaseConnection.checkIfConnectionDefined()) {
             logger.log(Level.INFO, "Wordle created and connected.");
+            System.out.println("Wordle created and connected.");
         } else {
-            logger.log(Level.INFO, "Not able to connect. Sorry!");
+            logger.log(Level.WARNING, "Not able to connect. Sorry!");
+            System.out.println("Not able to connect. Sorry!")
             return;
         }
         if (wordleDatabaseConnection.createWordleTables()) {
             logger.log(Level.INFO, "Wordle structures in place.");
         } else {
-            logger.log(Level.INFO, "Not able to launch. Sorry!");
+            logger.log(Level.WARNING, "Not able to launch. Sorry!");
             return;
         }
 
@@ -77,11 +79,14 @@ public class App {
 
                 if (wordleDatabaseConnection.isValidWord(guess)) { 
                     System.out.println("Success! It is in the the list.\n");
+                    logger.log(Level.INFO, "Success! It is in the the list.\n");
                 }else{
                     System.out.println("Sorry. This word is NOT in the the list.\n");
+                    logger.log(Level.INFO, "Sorry. This word is NOT in the the list.\n");
                 }
 
                 System.out.print("Enter a 4 letter word for a guess or q to quit: " );
+                logger.log(Level.INFO, "Enter a 4 letter word for a guess or q to quit: " );
                 guess = scanner.nextLine();
             }
         } catch (NoSuchElementException | IllegalStateException e) {
