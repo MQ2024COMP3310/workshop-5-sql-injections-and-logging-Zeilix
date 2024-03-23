@@ -42,7 +42,7 @@ public class App {
             System.out.println("Wordle created and connected.");
         } else {
             logger.log(Level.WARNING, "Not able to connect. Sorry!");
-            System.out.println("Not able to connect. Sorry!")
+            System.out.println("Not able to connect. Sorry!");
             return;
         }
         if (wordleDatabaseConnection.createWordleTables()) {
@@ -64,7 +64,7 @@ public class App {
             }
 
         } catch (IOException e) {
-            logger.log(Level.WARNING, "Nope", e);
+            logger.log(Level.SEVERE, e.getMessage());
             return;
         }
 
@@ -76,13 +76,14 @@ public class App {
 
             while (!guess.equals("q")) {
                 System.out.println("You've guessed '" + guess+"'.");
+                logger.log(Level.INFO, guess);
 
                 if (wordleDatabaseConnection.isValidWord(guess)) { 
                     System.out.println("Success! It is in the the list.\n");
                     logger.log(Level.INFO, "Success! It is in the the list.\n");
                 }else{
                     System.out.println("Sorry. This word is NOT in the the list.\n");
-                    logger.log(Level.INFO, "Sorry. This word is NOT in the the list.\n");
+                    logger.log(Level.SEVERE, "Sorry. " + guess + " is NOT in the the list.\n");
                 }
 
                 System.out.print("Enter a 4 letter word for a guess or q to quit: " );
